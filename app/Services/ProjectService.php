@@ -13,16 +13,13 @@ class ProjectService implements ProjectServiceInterface
         return Project::all();
     }
 
-    public function addProject(Request $request)
+    public function addProject($data)
     {
-        return Project::create($request->all());
+        return Project::create($data);
     }
 
-    public function updateProject(Request $request)
+    public function updateProject($id, $data)
     {
-        $data = $request->except('_token', 'id');
-        $project = Project::find($request->id);
-
-        return $project->update($data);
+        return Project::where('id', $id)->update($data);
     }
 }

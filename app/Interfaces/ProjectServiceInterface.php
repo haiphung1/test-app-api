@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 interface ProjectServiceInterface
 {
     public function getAllProject();
-    public function addProject(Request $request);
-    public function updateProject(Request $request);
+    public function addProject($data);
+    public function updateProject($id, $data);
 }

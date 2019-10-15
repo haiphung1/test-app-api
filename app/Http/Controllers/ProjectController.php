@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\ProjectServiceInterface;
 use App\Http\Requests\ProjectRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class ProjectController extends Controller
 {
@@ -21,15 +21,17 @@ class ProjectController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        $this->projectService->addProject($request);
+        $data = $request->except('_token');
+        $this->projectService->addProject($data);
 
-        return response()->json("success", 200);
+        return response()->json(Lang::get('messages.success'), 200);
     }
 
-    public function update(ProjectRequest $request)
+    public function update(ProjectRequest $request, $id)
     {
-        $this->projectService->updateProject($request);
+        $data = $request->except('_token');
+        $this->projectService->updateProject($id, $data);
 
-        return response()->json("success", 200);
+        return response()->json(Lang::get('messages.success'), 200);
     }
 }
