@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('information');
-            $table->integer('phone');
+            $table->string('phone');
             $table->date('date_of_birth');
             $table->string('avatar');
             $table->integer('position');

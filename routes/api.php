@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +16,7 @@ Route::group(['prefix' => 'projects'], function () {
     Route::get('/', 'ProjectController@index');
     Route::post('store', 'ProjectController@store');
     Route::put('update/{id}', 'ProjectController@update');
+});
+Route::group(['prefix' => 'members'], function () {
+    Route::post('store', 'MemberController@store');
 });
