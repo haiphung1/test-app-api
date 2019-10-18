@@ -14,6 +14,11 @@ class MemberService implements MemberServiceInterface
         $this->uploadService = $uploadService;
     }
 
+    public function getAllMember()
+    {
+        return Member::all();
+    }
+
     public function addMember($data)
     {
         $member = new Member();
@@ -36,5 +41,10 @@ class MemberService implements MemberServiceInterface
         };
 
         return $member->update();
+    }
+
+    public function deleteProject($id)
+    {
+        return Member::where('id', $id)->delete();
     }
 }
