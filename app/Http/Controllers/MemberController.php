@@ -14,6 +14,13 @@ class MemberController extends Controller
         $this->memberService = $memberService;
     }
 
+    public function index()
+    {
+        $member = $this->memberService->getAllMember();
+
+        return response()->json($member);
+    }
+
     public function store(MemberRequest $request)
     {
         $data = $request;
@@ -26,6 +33,13 @@ class MemberController extends Controller
     {
         $data = $request;
         $this->memberService->updateMember($id, $data);
+
+        return response()->json(Lang::get('messages.success'), 200);
+    }
+
+    public function destroy($id)
+    {
+        $this->memberService->deleteProject($id);
 
         return response()->json(Lang::get('messages.success'), 200);
     }
