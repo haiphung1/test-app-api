@@ -32,7 +32,7 @@ class MemberRequest extends FormRequest
             'information' => 'required|max:300',
             'phone' => 'required|regex:/^([+0][389][0-9\s\-\+\(\)\(.)\/]*)$/|max:20',
             'date_of_birth' => 'required|after:-60 years|before:today',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'avatar' => 'image|mimes:jpeg,png,jpg,git|max:10240',
             'position' => 'required',
             'gender' => 'required'
         ];

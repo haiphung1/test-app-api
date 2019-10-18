@@ -19,4 +19,5 @@ Route::group(['prefix' => 'projects'], function () {
 });
 Route::group(['prefix' => 'members'], function () {
     Route::post('store', 'MemberController@store');
+    Route::put('update/{id}', 'MemberController@update');
 });
