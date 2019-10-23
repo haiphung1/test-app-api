@@ -28,11 +28,23 @@ class ProjectController extends Controller
         return response()->json(Lang::get('messages.success'), 200);
     }
 
+    public function edit($id)
+    {
+        $project = $this->projectService->editProject($id);
+
+        return response()->json($project);
+    }
+
     public function update(ProjectRequest $request, $id)
     {
         $data = $request->except('_token');
         $this->projectService->updateProject($id, $data);
 
         return response()->json(Lang::get('messages.success'), 200);
+    }
+
+    public function destroy($id)
+    {
+        return $this->projectService->deleteProject($id);
     }
 }

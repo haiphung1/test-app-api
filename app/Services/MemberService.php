@@ -4,11 +4,12 @@ namespace App\Services;
 
 use App\Interfaces\MemberServiceInterface;
 use App\Models\Member;
+use App\Models\Join;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class MemberService implements MemberServiceInterface
 {
-    const CHECK_IMAGE = 0;
     public function __construct(UploadService $uploadService)
     {
         $this->uploadService = $uploadService;
@@ -35,7 +36,8 @@ class MemberService implements MemberServiceInterface
     {
         $member = Member::find($id);
         $member->fill($data->all());
-        if ($member->avatar > self::CHECK_IMAGE) {
+
+        if ($member->avatar > 0) {
             $path = $this->uploadService->upload($data);
             $member->avatar = asset($path);
         };
@@ -43,8 +45,16 @@ class MemberService implements MemberServiceInterface
         return $member->update();
     }
 
-    public function deleteProject($id)
+    public function deleteMember($id)
     {
-        return Member::where('id', $id)->delete();
+        $join = Join::where('member_id', $id)->delete();
+        $member = Member::where('id', $id)->delete();
+
+        return response()->json(Lang::get('messages.success'), 200);
+    }
+
+    public function getMemberById($id)
+    {
+        return Member::find($id);
     }
 }

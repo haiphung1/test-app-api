@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
-class MemberRequest extends FormRequest
+class JoinRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,13 +29,7 @@ class MemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'information' => 'required|max:300',
-            'phone' => 'required|regex:/^([+0][389][0-9\s\-\+\(\)\(.)\/]*)$/|max:20',
-            'date_of_birth' => 'required|after:-60 years|before:today',
-//            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
-            'position' => ['required', Rule::in(['Intern', 'Senior', 'Pm', 'Ceo', 'Cto', 'Bo'])],
-            'gender' => ['required', Rule::in(['Male', 'Female'])]
+            'role' => ['required', Rule::in(['Dev', 'Pl', 'Pm', 'Po', 'Sm'])],
         ];
     }
 

@@ -12,4 +12,14 @@ class Join extends Model
         'member_id',
         'role'
     ];
+
+    public function members()
+    {
+        return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
+
+    public function projects()
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
 }

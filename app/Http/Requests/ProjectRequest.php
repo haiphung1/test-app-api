@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
@@ -31,8 +32,8 @@ class ProjectRequest extends FormRequest
             'name' => 'required|max:10',
             'information' => 'required|max:300',
             'deadline' => 'after:yesterday',
-            'type' => 'required',
-            'status' => 'required'
+            'type' => ['required', Rule::in(['Lap', 'Single', 'Acceptance'])],
+            'status' => ['required', Rule::in(['Planned', 'On hold', 'Doing', 'Done', 'Cancelled'])]
         ];
     }
 

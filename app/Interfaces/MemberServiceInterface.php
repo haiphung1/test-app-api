@@ -9,5 +9,6 @@ interface MemberServiceInterface
     public function getAllMember();
     public function addMember($data);
     public function updateMember($id, $data);
-    public function deleteProject($id);
+    public function deleteMember($id);
+    public function getMemberById($id);
 }

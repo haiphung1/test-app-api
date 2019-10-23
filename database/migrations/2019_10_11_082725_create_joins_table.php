@@ -18,7 +18,7 @@ class CreateJoinsTable extends Migration
             $table->increments('id');
             $table->integer('project_id');
             $table->integer('member_id');
-            $table->integer('role');
+            $table->string('role');
             $table->timestamps();
         });
     }
